@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoDaddy OAuth & Cloudflare Pages</title>
+    <style>
+        body { font-family: monospace; background: #0d1117; color: #c9d1d9; padding: 2rem; max-width: 600px; margin: auto; }
+        .card { padding: 1.5rem; border: 1px solid #30363d; border-radius: 6px; background: #161b22; }
+        pre { background: #010409; padding: 1rem; border-radius: 4px; overflow-x: auto; color: #58a6ff; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>🚀 Cloudflare Pages Deployed</h2>
+        <p>Fetched GoDaddy OAuth Scopes:</p>
+        <pre id="output">Loading scopes...</pre>
+    </div>
+
+    <script>
+        fetch('./api/scope.json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(err => {
+                document.getElementById('output').textContent = 'Error loading scopes: ' + err.message;
+            });
+    </script>
+</body>
+</html>
